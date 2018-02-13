@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "bento/ubuntu-14.04"
+  config.vm.box = "generic/ubuntu1604"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -61,11 +61,17 @@ Vagrant.configure("2") do |config|
   # information on available options.
 
   config.vm.provider "virtualbox" do |v|
-  		v.memory = 4096
-  		v.cpus = 4
+	v.memory = 4096
+	v.cpus = 4
   end
 
-
+  config.vm.provider "hyperv" do |hyperv|
+    hyperv.memory = 4096
+	hyperv.cpus = 4
+	hyperv.enable_virtualization_extensions = true
+	hyperv.differencing_disk = true
+  end 
+  
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
