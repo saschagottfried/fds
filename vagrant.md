@@ -63,7 +63,8 @@ Create a build environment
 
 By default, Vagrant shares your project directory (remember, that is the one with the Vagrantfile) to the `/vagrant` directory in your guest machine.
 
-Note that when you `vagrant ssh` into your machine, you're in `/home/vagrant`. `/home/vagrant` is a different directory from the synced `/vagrant` directory.
+Note that when you `vagrant ssh` into your machine, you're in `/home/vagrant`.   
+`/home/vagrant` is a different directory from the synced `/vagrant` directory.
     
     $ pwd
     /home/vagrant
