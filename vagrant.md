@@ -52,6 +52,8 @@ Create a build environment
 - Install Intel Math Kernel Library
 - Compile FDS sources
   - build target `mpi_gnu_linux_64`
+  
+> If you want the look behind the curtain: during provisiong phase Vagrant is using this [script](provision.sh) to setup the build environment.
 
 ## Connect to Vagrant box
 
