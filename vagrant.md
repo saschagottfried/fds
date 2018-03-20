@@ -3,8 +3,7 @@
 The basic idea is to create a build environment to compile FDS source code in an automated way - reproducible, version controlled and fast.
 Vagrant can provide this to every developer. A file `Vagrantfile` to create and provision a virtual machine is now added to the source code repository in top-level folder.
 
-With regard to running FDS it is a good idea to isolate an end-user environment used for production jobs from an environment capable to compile FDS Fortran source code. End-users just install the official bundle and usually only care about system administration when they have issues. When support end-users reconfigure their environmentto compile nstall software dependencies required
-
+With regard to running FDS it is a good idea to isolate an end-user environment used for production jobs from an environment capable to compile FDS Fortran source code. End-users just install the official bundle and usually only care about system administration when they have issues. End-users usually should not modify their actual environments to install software dependencies required for compilation since these modifications might affect installation of future FDS bundles.
 
 ## Why vagrant
 
