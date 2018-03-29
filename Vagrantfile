@@ -12,11 +12,12 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  #config.vm.box = "bento/ubuntu-17.10"
+  config.vm.box = "bento/ubuntu-16.04"
+  config.vm.box_version = "201801.02.0"
   
   # create a HyperV box using config version 8.2
-  config.vm.box = "generic/ubuntu1604"
-  config.vm.box_version = "1.4.12"
+  #config.vm.box = "generic/ubuntu1604"
+  #config.vm.box_version = "1.4.12"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -48,6 +49,7 @@ Vagrant.configure("2") do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
+  config.vm.synced_folder ".", "/vagrant", type: "rsync", rsync__exclude: ".git/"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -68,6 +70,13 @@ Vagrant.configure("2") do |config|
   		v.memory = 4096
   		v.cpus = 4
   end
+  
+  config.vm.provider "hyperv" do |hyperv|
+		hyperv.memory = 4096
+		hyperv.cpus = 4
+		hyperv.enable_virtualization_extensions = true
+		hyperv.differencing_disk = true
+  end 
 
 
   # Enable provisioning with a shell script. Additional provisioners such as
