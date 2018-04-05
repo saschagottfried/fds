@@ -25,6 +25,35 @@ You can activate the root environment with the command `source activate root`.
 
 # Use conda for runtime environments
 
+Gnu Fortran runtime
 - https://anaconda.org/anaconda/libgfortran-ng
 
 	$ conda install -c anaconda libgfortran-ng
+
+
+Intel MKL
+- https://anaconda.org/intel/mkl
+
+	$ conda install -c intel mkl
+
+Intel MPI library
+- https://anaconda.org/intel/impi_rt
+
+	$ conda install -c intel impi_rt
+
+Intel OpenMP
+- https://anaconda.org/intel/openmp
+
+
+
+
+# Use conda-forge
+
+A community led collection of recipes, build infrastructure and distributions for the conda package manager.
+
+https://conda-forge.org
+
+
+
+
+
