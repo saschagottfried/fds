@@ -155,7 +155,22 @@ $ /vagrant/Build/mpi_gnu_linux_64/fds_mpi_gnu_linux_64 /vagrant/Verification/Pre
 ```
 
 
+## Dealing with line endings
 
+Run
+
+```bash
+vagrant@ubuntu-14:/vagrant/Build/mpi_gnu_linux_64$ ./make_fds.sh
+-bash: ./make_fds.sh: /bin/bash^M: bad interpreter: No such file or directory
+```
+
+Docs
+- [GitHub Help - Dealing with line endings](https://help.github.com/articles/dealing-with-line-endings/#platform-all)
+- ["Mind the End of Your Line" - The full story of line endings in Git by Tim Clem](http://adaptivepatchwork.com/2012/03/01/mind-the-end-of-your-line/)
+
+Other experiences
+- [The case of Windows line-ending in bash-script](https://techblog.dorogin.com/case-of-windows-line-ending-in-bash-script-7236f056abe)
+- [You're just another carriage return line feed in the wall](https://www.hanselman.com/blog/YoureJustAnotherCarriageReturnLineFeedInTheWall.aspx)
  
 
 
