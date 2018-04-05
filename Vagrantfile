@@ -12,12 +12,8 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "bento/ubuntu-16.04"
-  config.vm.box_version = "201801.02.0"
-  
-  # create a HyperV box using config version 8.2
-  #config.vm.box = "generic/ubuntu1604"
-  #config.vm.box_version = "1.4.12"
+  # use open source boxes from bento
+  config.vm.box = "bento/ubuntu-14.04"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs

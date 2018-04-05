@@ -1,12 +1,13 @@
 #!/usr/bin/env sh
 
 # install build-essential
-sudo apt-get install build-essential -qy
+sudo apt-get install build-essential software-properties-common -qy
 
 # install gfortran 7.X
 sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
 sudo apt-get update -qq
-sudo apt-get install gfortran-7 git -qy
+sudo apt-cache show gfortran-7
+sudo apt-get install gfortran-7 git --no-install-recommends -qy
 
 # compile Open MPI 3.0.0
 wget -nv -N https://www.open-mpi.org/software/ompi/v3.0/downloads/openmpi-3.0.0.tar.gz -q
@@ -19,7 +20,8 @@ wget -nv -N https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PROD
 sudo apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB -q
 sudo sh -c 'echo deb https://apt.repos.intel.com/mkl all main > /etc/apt/sources.list.d/intel-mkl.list'
 sudo apt-get update -qq
-sudo apt-get install intel-mkl-64bit-2017.4-061 -qy
+sudo apt-cache show intel-mkl-64bit-2017.4-061
+sudo apt-get install intel-mkl-64bit-2017.4-061 --no-install-recommends -qy
 
 # compile FDS with GNU/OMPI toolchain with MKL environment for Intel 64 architecture
 source /opt/intel/mkl/bin/mklvars.sh intel64
