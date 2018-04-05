@@ -445,9 +445,11 @@ METHOD_OF_HEAT_TRANSFER: SELECT CASE(SF%THERMAL_BC_INDEX)
       IF (ATMOSPHERIC_INTERPOLATION) THEN
          ! interp or extrap RHO_OTHER for jump in vertical grid resolution, linear in temperature to match heat flux in divg
          PBAR_G = PBAR_P(KKG,ONE_D%PRESSURE_ZONE)
-         PBAR_OTHER = MM%PBAR(EWC%KKO_MIN,ONE_D%PRESSURE_ZONE)
-         DENOM = PBAR_G/ONE_D%RHO_G + DDO*(PBAR_OTHER/RHO_OTHER - PBAR_G/ONE_D%RHO_G)
-         RHOP(II,JJ,KK) = PBAR_P(KK,ONE_D%PRESSURE_ZONE)/DENOM
+         PBAR_OTHER = EVALUATE_RAMP(MM%ZC(EWC%KKO_MIN),DUMMY,I_RAMP_P0_Z)
+         ZZ_GET(1:N_TRACKED_SPECIES) = MAX(0._EB,MIN(1._EB,RHO_ZZ_OTHER(1:N_TOTAL_SCALARS)/RHO_OTHER))
+         CALL GET_SPECIFIC_GAS_CONSTANT(ZZ_GET,RSUM(II,JJ,KK))
+         DENOM = PBAR_G/ONE_D%RHO_G/ONE_D%RSUM_G + DDO*(PBAR_OTHER/RHO_OTHER/RSUM(II,JJ,KK) - PBAR_G/ONE_D%RHO_G/ONE_D%RSUM_G)
+         RHOP(II,JJ,KK) = PBAR_P(KK,ONE_D%PRESSURE_ZONE)/RSUM(II,JJ,KK)/DENOM
       ELSE
          RHOP(II,JJ,KK) = RHO_OTHER
       ENDIF
@@ -1176,6 +1178,7 @@ OBST_LOOP_2: DO N=1,N_OBST
             KKG = WC%ONE_D%KKG
             IOR = WC%ONE_D%IOR
             TMP_S = TMP(I,J,K)
+
             SELECT CASE(ABS(IOR))
                CASE(1); GEOM_FACTOR = DX(I)
                CASE(2); GEOM_FACTOR = DY(J)
@@ -1197,7 +1200,7 @@ OBST_LOOP_2: DO N=1,N_OBST
                            RHO_OUT(1:MS%N_MATL),MS%LAYER_DENSITY(1),DUMMY,DT_SUB,&
                            M_DOT_G_PPP_ADJUST,M_DOT_G_PPP_ACTUAL,M_DOT_S_PPP,Q_DOT_PPP_S(I,J,K))
 
-            OB%RHO(I,J,K,1:MS%N_MATL) = OB%RHO(I,J,K,1:MS%N_MATL) + RHO_OUT(1:MS%N_MATL)-RHO_IN(1:MS%N_MATL)
+            OB%RHO(I,J,K,1:MS%N_MATL) = OB%RHO(I,J,K,1:MS%N_MATL) + RHO_OUT(1:MS%N_MATL) - RHO_IN(1:MS%N_MATL)
 
             ! simple model (no transport): pyrolyzed mass is ejected via wall cell index WALL_INDEX_HT3D(IC,OB%PYRO3D_IOR)
 
