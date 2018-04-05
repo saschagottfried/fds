@@ -35,11 +35,25 @@ $ cd fds
 $ vagrant up
 ```
 
+When Vagrant provisioner, connect to box.
+
 Connect to Vagrant box
 
     $ vagrant ssh
 
-Run FDS case
+
+#### Build FDS 
+
+Compile FDS with GNU/OMPI toolchain with MKL environment for Intel 64 architecture
+
+    $ source /opt/intel/mkl/bin/mklvars.sh intel64
+    $ source /vagrant/open-mpi-vars.sh
+    $ cd /vagrant/Build/mpi_gnu_linux_64
+    $ ./make_fds.sh
+
+# Run FDS case
+
+After building FDS you can connect to Vagrant box an run a FDS file
 
 ```bash
 $ /vagrant/Build/mpi_gnu_linux_64/fds_mpi_gnu_linux_64 simple_glmat.fds
