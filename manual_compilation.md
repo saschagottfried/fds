@@ -349,7 +349,20 @@ Given the dependency of `libgfortran.so.4` a potential end user might install ap
 Since default [Runtime library for GNU Fortran applications](https://packages.ubuntu.com/trusty/libgfortran3) on Ubuntu 14.04 is `libgfortran3` an installation of `libgfortran4` is required to run the a self-compiled version of `FDS`.
 
     $ sudo apt-get install libgfortran4
+	
+### Fortran link options
 
+Evaluate whether static linking is an option for shipping binaries to CI/CD pipelines.
+
+	2.7 Influencing the linking step
+	These options come into play when the compiler links object files into an executable output file. They are meaningless if the compiler is not doing a link step.
+
+	-static-libgfortran
+	On systems that provide libgfortran as a shared and a static library, this option forces the use of the static version. If no shared version of libgfortran was built when the compiler was configured, this option has no effect.
+
+Docs
+- [Influence linking step](https://gcc.gnu.org/onlinedocs/gcc-8.1.0/gfortran/Link-Options.html#Link-Options)
+	
 ## Deploy FDS/MPI to clusters
 
 A compiled Open MPI installation can be relocated. This information is a game changer.
@@ -383,9 +396,13 @@ Blogs and books
 AutoTools
 - [The magic behind configure, make, make install](https://robots.thoughtbot.com/the-magic-behind-configure-make-make-install)
 
-GNU Fortran 8.0
+GNU Fortran 8.X
+- 
 - [Install latest gfortran on Ubuntu](https://www.scivision.co/install-latest-gfortran-on-ubuntu/)
 - [Creating shared and static library with GNU compiler](http://renenyffenegger.ch/notes/development/languages/C-C-plus-plus/GCC/create-libraries/index)
+
+GNU Fortran 8.
+
 
 ## More on Intel MKL
 
