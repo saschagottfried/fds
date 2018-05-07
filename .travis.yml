@@ -1,4 +1,4 @@
-sudo: false
+sudo: required
 addons:
   apt:
     sources:
@@ -6,11 +6,9 @@ addons:
     packages:
     - gfortran-7
     - gcc-7
+    - libopenmpi-dev
 language: generic
 install:
-  - ./install-ompi.sh
 script:
-  - export LD_LIBRARY_PATH=/opt/openmpi-3.0.0/lib:$LD_LIBRARY_PATH
-  - export PATH=/opt/openmpi-3.0.0/bin:$PATH
   - cd Build/mpi_gnu_linux_64
   - ./make_fds.sh
