@@ -52,10 +52,12 @@ $> vagrant ssh
 
 Compile FDS with GNU/OMPI toolchain with MKL environment for Intel 64 architecture
 
-    $ source /opt/intel/mkl/bin/mklvars.sh intel64
-    $ source /vagrant/open-mpi-vars.sh
-    $ cd /vagrant/Build/mpi_gnu_linux_64
-    $ ./make_fds.sh
+```bash
+$> source /opt/intel/mkl/bin/mklvars.sh intel64
+$> source /vagrant/open-mpi-vars.sh
+$> cd /vagrant/Build/mpi_gnu_linux_64
+$> ./make_fds.sh
+```
 
 ### Run FDS case
 
