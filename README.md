@@ -10,39 +10,45 @@ Fire Dynamics Simulator ([FDS](https://github.com/firemodels/fds)) is a large-ed
 
 Smokeview ([SMV](https://github.com/firemodels/smv)) is a visualization program used to display the output of FDS and [CFAST](https://github.com/firemodels/cfast) simulations.
 
-# Contribution
+## Contribution
+
 For more information, including a link to our discussion forum, please visit the [FDS-SMV website](https://pages.nist.gov/fds-smv/).
 
 Pull requests welcome! 
 Pull requests are build with [Travis CI](https://travis-ci.org/saschagottfried/fds) using GNU Fortran and Open MPI to [address project contribution guidelines](https://github.com/firemodels/fds/wiki/Developer-Commit-Guidelines#when-should-i-submit-a-pull-request) and to provide a continuous integration workflow available for contributors outside of NIST. Notice the build tag (green/red) on top of the page.
 
-# Build status
+## Build status
+
 Here is a link to our [Firebot Build Status](https://pages.nist.gov/fds-smv/firebot_status.html).
 
-# Build instruction for Linux OS
+## Build instruction for Linux OS
 
 Install software
-- Vagrant and VirtualBox
- 
-Clone the repo 
 
-    $ git clone https://github.com/firemodels/fds.git
+- Vagrant and VirtualBox
+
+Clone the repo
+
+```bash
+$> git clone https://github.com/firemodels/fds.git
+```
 
 Fire up Vagrant box
 
 ```bash
-$ cd fds
-$ vagrant up
+$> cd fds
+$> vagrant up
 ```
 
 When Vagrant provisioner, connect to box.
 
 Connect to Vagrant box
 
-    $ vagrant ssh
+```bash
+$> vagrant ssh
+```
 
-
-#### Build FDS 
+### Build FDS
 
 Compile FDS with GNU/OMPI toolchain with MKL environment for Intel 64 architecture
 
@@ -51,7 +57,7 @@ Compile FDS with GNU/OMPI toolchain with MKL environment for Intel 64 architectu
     $ cd /vagrant/Build/mpi_gnu_linux_64
     $ ./make_fds.sh
 
-# Run FDS case
+### Run FDS case
 
 After building FDS you can connect to Vagrant box an run a FDS file
 
