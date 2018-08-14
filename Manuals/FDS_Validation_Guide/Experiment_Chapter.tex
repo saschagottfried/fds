@@ -43,7 +43,7 @@ A common validation experiment for CFD codes involves flow through a channel wit
 \section{Beyler Hood Experiments}
 \label{Beyler_Hood_Description}
 
-Craig Beyler performed small-scale fire experiments where a gas burner was positioned at various heights underneath a closed, cylindrical hood, 100~cm in diameter and 48~cm in height~\cite{Beyler:Hood}.  The hood consisted of two concentric cylinders separated by an air gap, as shown in Fig.~\ref{Beyler_Hood_Sketch}.  The inner cylinder was shorter than the outer and this allowed combustion products to be removed uniformly from the hood perimeter.  The exhaust gases were then analyzed to determine species concentrations. The burner could be raised and lowered with respect to the bottom edge of the hood. The reported relative standard uncertainty of the measured gas species mass fractions was 6~\%. The fuels consisted of acetone, ethanol, isopropanol, methanol, propane, propylene, and toluene. Hood equivalence ratios varied from 0.2 to 1.7.  A subset of 47 of the original 148 experiments spanning the equivalence ratio range for each fuel were simulated for validation, see Table~\ref{beyler_sum}.
+Craig Beyler performed small-scale fire experiments where a variety of circular gas burners were centered at various heights underneath a closed, cylindrical hood, 100~cm in diameter and 48~cm in height~\cite{Beyler:Hood}.  The hood consisted of two concentric cylinders separated by an air gap, as shown in Fig.~\ref{Beyler_Hood_Sketch}.  The inner cylinder was shorter than the outer and this allowed combustion products to be removed uniformly from the hood perimeter.  The exhaust gases were then analyzed to determine species concentrations. The burner could be raised and lowered with respect to the bottom edge of the hood. The reported relative standard uncertainty of the measured gas species mass fractions was 6~\%. The fuels consisted of acetone, ethanol, isopropanol, methanol, propane, propylene, and toluene. Hood equivalence ratios varied from 0.2 to 1.7.  A subset of 47 of the original 148 experiments spanning the equivalence ratio range for each fuel were simulated for validation, see Table~\ref{beyler_sum}.
 
 \begin{figure}[h]
 \centering
@@ -116,7 +116,7 @@ Table~\ref{bit_sum} reports the sprinkler actuation times of each sprinkler.
 
 \begin{table}[!ht]
 \centering
-\caption{Summary of results, Bittern experiments. Note that Exp.~11 has been excluded because of a failed mass loss measurement.}
+\caption[Summary of results, Bittern experiments]{Summary of results, Bittern experiments. Note that Exp.~11 has been excluded because of a failed mass loss measurement.}
 \label{bit_sum}
 \begin{tabular}{|c|c|c|c|c|c|c|c|}
 \hline
@@ -145,15 +145,11 @@ Exp. & Spr.~1 & Time (s) & Spr.~2 & Time (s) & $T_0$ ($^\circ$C) & Door   & Fire
 \end{tabular}
 \end{table}
 
-\subsection{Modeling Notes}
+\subsubsection{Modeling Notes}
 
 The assumptions given in this section were used in the original analysis of the experiments~\cite{Bittern:Thesis}.
 
-\subsubsection{Material Properties}
-
 The gypsum board had a thickness of 1~cm, density of 731~kg/m\textsuperscript{3}, specific heat of 0.90~kJ/(kg$\cdot$K), conductivity of 0.17~W/(m$\cdot$K), and emissivity of 0.88. The concrete floor was assumed to have a thickness of 10~cm, density of 2300~kg/m$^3$, specific heat of 0.88~kJ/(kg$\cdot$K), conductivity of 1.2~W/(m$\cdot$K), and emissivity of 0.5.
-
-\subsubsection{Sprinkler Properties}
 
 The properties of the sprinklers are shown in Table~\ref{Bittern_Sprinklers}. These properties are based on the manufacturer's specification where available or otherwise estimated based on measured values of comparable sprinklers. For modeling purposes, the sprinkler offset, 2~cm, was selected based on an approximate 2~cm glass bulb length, and the C-factor selected was based on a sensitivity analyses undertaken in the original study.
 
@@ -172,11 +168,7 @@ SS93           & Standard Response, 5 mm glass bulb  & 95                  & 0.4
 \end{tabular}
 \end{table}
 
-\subsubsection{Fire and Combustion}
-
 The average heat of combustion of the upholstery was measured in a cone calorimeter to be 21.9~MJ/kg (Exp.~1-10) and 20.4~MJ/kg (Exp.~12-22). Since the primary fuel used in the experiments was flexible polyurethane foam, the radiant loss fraction assumed in the fire model was 0.46. Other combustion parameters were as for polyurethane foam, and all parameters selected are consistent with those used in the original BRANZFIRE study~\cite{Wade:FT2007}. For the ``simple chemistry'' combustion model, inputs for stoichiometric yields have been selected from literature based on GM23 foam, with an effective molecular formula of CH$_{1.8}$O$_{0.35}$N$_{0.06}$. The soot yield was assumed to be 0.227~kg/kg. The area of the fire was taken to be 0.4~m by 0.5~m. The height of the fire was assumed to be 0.65~m above the floor.
-
-\subsubsection{Ventilation and Leakage}
 
 For experiments 11 to 22, the door to the compartment was closed. The estimated leakage area was assumed based on data for loose-fitting internal walls. An area of 0.053 m\textsuperscript{2} was evenly distributed across the door.
 
@@ -242,7 +234,63 @@ Petra Andersson and Patrick Van Hees of the Swedish National Testing and Researc
 \section{CSIRO Grassland Fires}
 \label{CSIRO_Grassland_Fires_Description}
 
-In July and August of 1986, the Commonwealth Scientific and Industrial Research Organisation (CSIRO) of Australia conducted controlled grassland fire experiments near Darwin, Northern Territory~\cite{Cheney:IJWF1993}. July and August are in the middle of the dry season when the grasses are fully cured (dried) and the weather is warm and dry. The experiments were conducted on flat plots measuring 100~m by 100~m, 200~m by 200~m, or 200~m by 300~m. Two of these experiments were simulated with FDS by Mell~et~al.~\cite{Mell:IJWF2007} and are included in this guide. Case~C064 was conducted on a 100~m by 100~m plot of kerosene grass ({\it Eriachne burkittii}); Case~F19 was conducted on a 200~m by 200~m plot of kangaroo grass ({\it Themeda australis}).
+In July and August of 1986, the Commonwealth Scientific and Industrial Research Organisation (CSIRO) of Australia conducted controlled grassland fire experiments near Darwin, Northern Territory~\cite{Cheney:IJWF1993}. July and August are in the middle of the dry season when the grasses are fully cured (dried) and the weather is warm and dry. The experiments were conducted on flat plots measuring 100~m by 100~m, 200~m by 200~m, or 200~m by 300~m. Two cases have been simulated. Case~C064 was conducted on a 100~m by 100~m plot of kerosene grass ({\it Eriachne burkittii}); Case~F19 was conducted on a 200~m by 200~m plot of kangaroo grass ({\it Themeda australis}).
+
+\subsubsection{Modeling Notes}
+
+Two of these experiments were simulated with FDS by Mell~et~al.~\cite{Mell:IJWF2007}. Measured properties for the specific types of grasses burned in the two experiments are listed in Table~\ref{Properties_Grasses}. Properties that were not measured are listed in Table~\ref{Assumed_Properties_Grasses}. These assumed properties are typically for wood or cellulosic fuels. The moisture is modeled as water. The grass is assumed to be composed primarily of cellulose.
+
+\begin{figure}[ht]
+\includegraphics[width=\textwidth]{FIGURES/CSIRO_Grassland_Fires/Case_F19_0358.png}
+\caption[Snapshot of the simulation of CSIRO Grassland Fire F19]{Snapshot of the simulation of CSIRO Grassland Fire F19.}
+\label{F19}
+\end{figure}
+
+A snapshot of the simulation of Case~F19 is shown in Fig.~\ref{F19}. The computational domain in this case is 240~m by 240~m by 20~m. The grid cells are 0.5~m cubes. The domain is subdivided into 36 individual meshes and run in parallel. The grass is represented by 800,000 Lagrangian particles with a cylindrical geometry, or about 5 simulated blades per grid cell. The radius of the cylinder is derived from the measured surface area to volume ratio. Each simulated blade of grass represents many more actual blades of grass. The weighting factor is determined from the measured bulk mass per unit area. The fires in the experiments were ignited by two men carrying drip torches walking in opposite directions along the upwind boundary of the plot (the red strip in Fig.~\ref{F19}). In FDS, this action was modeled using a specified spread rate along the strip.
+
+\begin{table}[ht]
+\begin{center}
+\caption[Measured properties for the CSIRO Grassland Fire cases]{Measured properties for the CSIRO Grassland Fire cases~\cite{Cheney:IJWF1993}.}
+\label{Properties_Grasses}
+\begin{tabular}{|l|c|c|c|}
+\hline
+Property                        & Units         & Case F19      & Case C064     \\ \hline \hline
+Wind Speed                      & m/s           & 4.8           & 4.6           \\ \hline
+Ambient Temperature             & $^\circ$C     & 34            & 32            \\ \hline
+Surface Area to Volume Ratio    & m$^{-1}$      & 12240         & 9770          \\ \hline
+Grass Height                    & m             & 0.51          & 0.21          \\ \hline
+Bulk Mass per Unit Area         & kg/m$^2$      & 0.313         & 0.283         \\ \hline
+Moisture Fraction               & \%            & 5.8           & 6.3           \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{table}
+\begin{center}
+\caption[Assumed properties for dry grass and soil]{Assumed properties for various types of dried grass and soil. Note that the Pyrolysis Temperature is taken to be the temperature at which the mass loss rate peaks in the TGA experiments of Morvan and Dupuy~\cite{Morvan:CF2004}.}
+\label{Assumed_Properties_Grasses}
+\begin{tabular}{|l|c|c|c|}
+\hline
+Property                        & Units                 & Value                     & Reference                             \\ \hline \hline
+Chemical Composition            & --                    & C$_6$H$_{10}$O$_5$        & Assumption                            \\ \hline
+Heat of Combustion              & kJ/kg                 & 15600                     & \cite{Susott:FS1982}                  \\ \hline
+Soot Yield                      & kg/kg                 & 0.015                     & \cite{SFPE:Tewarson}                  \\ \hline
+Char Yield                      & kg/kg                 & 0.2                       & \cite{Susott:FS1982}                  \\ \hline
+Specific Heat                   & kJ/(kg$\cdot$K)       & 1.5                       & Various sources                       \\ \hline
+Conductivity                    & W/(m$\cdot$K)         & 0.1                       & Assumption                            \\ \hline
+Density                         & kg/m$^3$              & 512                       & \cite{Rothermel:1972}                 \\ \hline
+Heat of Pyrolysis               & kJ/kg                 & 418                       & \cite{Morvan:CF2004}                  \\ \hline
+Pyrolyis Temperature            & $^\circ$C             & 200                       & \cite{Morvan:CF2004}                  \\ \hline \hline
+Obukhov Length                  & m                     & -500                      & Assumption                            \\ \hline
+Aerodynamic Roughness Length    & m                     & 0.03                      & Assumption                            \\ \hline
+Drag Coefficient                & --                    & 2.6                       & \cite{Falkenstein-Smith:2018}         \\ \hline \hline
+Soil Specific Heat              & kJ/(kg$\cdot$K)       & 2.0                       & \cite{Farouki:1981}                   \\ \hline
+Soil Conductivity               & W/(m$\cdot$K)         & 0.25                      & \cite{Farouki:1981}                   \\ \hline
+Soil Density                    & kg/m$^3$              & 1300                      & \cite{Farouki:1981}                   \\ \hline
+
+\end{tabular}
+\end{center}
+\end{table}
 
 
 \section{Cup Burner Experiments}
@@ -359,14 +407,27 @@ were placed in front of, and to the side of, burners with dimensions of 0.3~m by
 rates were set to 100~kW, 150~kW, 200~kW, 250~kW, and 300~kW. The gauges were mounted at heights of 0~m, 0.5~m, 1.0~m, and 1.5~m relative to the top edge of the burner.
 
 
-\section{FM/FPRF Datacenter Experiments}
+\section{FM Burner Experiments}
+\label{FM_Burner_Description}
+
+A series of gas burner experiments was conducted by Zeng and Wang at FM Global in which the co-flow air stream was gradually diluted with nitrogen until flame extinction was achieved~\cite{Zeng:26ICDERS}. Numerical simulations were subsequently performed by Ren~et~al.~\cite{Ren:CS2018}. In the experiments, a 15.2~cm round steel burner was placed near the floor of a 1.22~m by 1.22~m by 1.83~m tall compartment. Four fuels were used: ethylene (C$_2$H$_4$), methane (CH$_4$), propane (C$_3$H$_8$), and propylene (C$_3$H$_6$). The heat release rate in each experiment was 10~kW with a 1~kW ring of pilot burners to stabilize the flame. At the start of each experiment, air was pumped through the floor at a rate sufficient to supply the fire with approximately 10 times the stoichiometric requirement. Subsequently, nitrogen was slowly added to the air stream until the fire was extinguished.
+
+\subsubsection{Modeling Notes}
+
+The FDS simulations of these experiments are run for 65~s, in which time the oxygen concentration in the co-flow stream is ramped down linearly from 21~\% to 8~\%. The volume flow of the co-flow stream has been increased tenfold compared to the experiments to prevent a downwash of ambient air into the sealed compartment.
+
+The combustion scheme employed is very similar as that used for the UMD Line Burner experiments~\ref{UMD_Line_Burner_Description}.
+
+
+
+\section{FM/FPRF Data Center Experiments}
 \label{FM_FPRF_Datacenter_Description}
 
-The Fire Protection Research Foundation funded a series of large scale tests of smoke detection in high airflow datacenters as part of a research project on behalf of the NFPA 75 and NFPA 76 Technical Committees~\cite{FM_Datacenter_Rpt}. The tests consisted of a datacenter mockup that was 4.9~m high, 4.9~m wide, and 7.3~m deep. The mockup was divided into a 0.9~m tall subfloor with air supplied via a natural vent opening on one short wall, a 0.9~m tall ceiling plenum with air removed via a mechanical vent opening on one short wall, two 2~m tall by 0.6~m wide by 5.3~m long enclosed cold aisles located along the outer walls, and a 3.1~m tall hot aisle.  Flow from the subfloor to the cold aisles occurred through grated floor tiles, flow from the cold aisles to the hot aisle was through two rows of empty equipment cabinets with perforated metal doors, and flow from the hot aisle to the ceiling plenum was through perforated metal ceiling tiles.
+The Fire Protection Research Foundation funded a series of large scale tests of smoke detection in high airflow data centers as part of a research project on behalf of the NFPA~75 and NFPA~76 Technical Committees~\cite{FM_Datacenter_Rpt}. The tests consisted of a data center mockup that was 4.9~m high, 4.9~m wide, and 7.3~m deep. The mockup was divided into a 0.9~m tall subfloor with air supplied via a natural vent opening on one short wall, a 0.9~m tall ceiling plenum with air removed via a mechanical vent opening on one short wall, two 2~m tall by 0.6~m wide by 5.3~m long enclosed cold aisles located along the outer walls, and a 3.1~m tall hot aisle.  Flow from the subfloor to the cold aisles occurred through grated floor tiles, flow from the cold aisles to the hot aisle was through two rows of empty equipment cabinets with perforated metal doors, and flow from the hot aisle to the ceiling plenum was through perforated metal ceiling tiles.
 
-Two groups of tests were performed. The first group of tests used a sonic anemometer to map the flowfield in the facility for a flow of 78 air changes per hour (ACH) and 265 ACH. Additional measurements were made of the pressure drops through the floor and ceiling tiles. The second group of tests measured smoke detection response to a variety of detectors from a range of typical smoke sources plus propylene (used for its ease of characterization and repeatability).
+Two groups of tests were performed. The first group of tests used a sonic anemometer to map the flow field in the facility for a flow of 78 air changes per hour (ACH) and 265~ACH. Additional measurements were made of the pressure drops through the floor and ceiling tiles. The second group of tests measured smoke detection response to a variety of detectors from a range of typical smoke sources plus propylene (used for its ease of characterization and repeatability).
 
-The FDS model of the facility makes use of the screen drag model for Lagrangian particles to model the pressure losses through the various metal meshes and grates present in the mockup. The FDS model also uses the specified leakage location model to model leakage through the seams of floor and ceiling tiles. The actual leakage area was not measured during the test. Instead the area was estimated using the reduction in the FM measured pressure drop from to the manufacture's reported pressure drop to compute a leakage flow. A description of the process used to create the FDS model and the test uncertainties can be found in a companion report documenting modeling of the tests with FDS 6.0.0~\cite{FDS_Datacenter_Rpt}.
+The FDS model of the facility makes use of the screen drag model for Lagrangian particles to model the pressure losses through the various metal meshes and grates present in the mockup. The FDS model also uses the specified leakage location model to model leakage through the seams of floor and ceiling tiles. The actual leakage area was not measured during the test. Instead the area was estimated using the reduction in the FM measured pressure drop from to the manufacturer's reported pressure drop to compute a leakage flow. A description of the process used to create the FDS model and the test uncertainties can be found in a companion report documenting modeling of the tests with FDS 6.0.0~\cite{FDS_Datacenter_Rpt}.
 
 
 \section{FM Parallel Panel Experiments}
@@ -593,11 +654,54 @@ The test report of the LLNL Enclosure experiments lists the mass flow rate, $\do
 \ee
 The reference leakage area, $A_{\rm L,ref}$, is estimated to be 0.0033~m$^2$, $n=0.6311$, $\Delta p_{\rm ref}=50$~Pa.
 
+In some of the experiments, the fire was reported to have self-extinguished, in which case the model employs the relatively simple Mowrer extinction model along with the one-step fast chemistry model of combustion. The Mowrer model predicts local flame extinction when the oxygen concentration within a grid cell is less than that required to raise the cell temperature to the critical flame temperature, which is 1507~$^\circ$C for methane~\cite{SFPE:Beyler}.
+
 
 \section{LNG Dispersion Experiments}
 \label{LNG_Dispersion_Description}
 
 In 2006, the Fire Protection Research Foundation (FPRF) undertook a research project for the National Fire Protection Association (NFPA) Liquefied Natural Gas (LNG) Technical Committee to develop tools for evaluating LNG dispersion models. The work was carried out by the Health and Safety Laboratory (HSL), a directorate of the UK Health and Safety Executive (HSE). HSL developed the LNG Model Evaluation Protocol (MEP), which contained a structure for complete evaluation of LNG dispersion models~\cite{Ivings:HSL}. The experiments are described in Ref.~\cite{Stewart:HSL}.
+
+\subsubsection{Modeling Notes}
+
+The simulations of liquefied natural gas (LNG) dispersion experiments that are described in this report were originally designed by Jeffrey Engerer and Anay Luketa of Sandia National Laboratories on behalf of the Pipeline and Hazardous Materials Safety Administration of the U.S. Department of Transportation.
+
+Parameters for the LNG dispersion experiments are given in Table~\ref{tab:LNG_Dispersion}. In some cases, values of the Monin-Obukhov parameters are taken directly from the test reports. However, for some of the experiments, these parameters were not derived using the same similarity functions as those presented above, in which case the parameters have been recomputed to best fit the measured velocity and temperature profiles. In the table, $u_*$ is the friction velocity, $\kappa=0.41$ is the Von K\'{a}rm\'{a}n constant, $z_0$ is the \emph{aerodynamic} roughness length, $\theta_*$ is the scaling potential temperature, $\theta_0$ is the ground level potential temperature, $L$ is the Monin-Obukhov length, and the similarity functions are those proposed by Dyer~\cite{Dyer:1974} and discussed in the report of the Falcon field experiments~\cite{Falcon}.
+
+In the experiments, a fixed mass, $m$, of LNG was spilled onto water, forming a pool of increasing radius. For modeling purposes, it is assumed that the mass flux of natural gas from the circular pool is fixed at $\dot{m}''_{\rm max}=0.167$~kg/(m$^2 \cdot$s), and the temperature of the gas is $-162$~$^\circ$C, as suggested in the testing protocols. The diameter of the pool, $D$, is calculated using the assumed mass flux per unit area, the reported mass of LNG, $m$, and the spill duration, $\Delta t$.
+\be
+   D = \sqrt{ \frac{4 \, m}{\pi \, \dot{m}''_{\rm max} \, \Delta t} }
+\ee
+The values of $D$ are given in Table~\ref{tab:LNG_Dispersion}.
+
+\begin{sidewaystable}[p]
+\caption{Summary of LNG Dispersion Experiments.}
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+Series                         & \multicolumn{4}{|c|}{Burro}       & \multicolumn{3}{|c|}{Coyote}  & \multicolumn{3}{|c|}{Falcon}                  & \multicolumn{3}{|c|}{Maplin Sands}          \\ \hline
+Number                         & 3      & 7      & 8      & 9      &  3     & 5      & 6           &  1          & 3           & 4                 &  27             & 34             & 35      \\ \hline \hline
+\multicolumn{14}{|c|}{Parameters supplied by test reports} \\ \hline
+Fuel Mass, $m$ (kg)            & 14712  & 17289  & 12453  & 10730  & 6532   & 12676  & 10139       & 28074       & 21435       & 18984             & 3714            & 2094           & 3658    \\ \hline
+Spill Duration, $\Delta t$ (s) & 167    & 174    & 107    & 79     & 65     & 98     & 82          & 131         & 154         & 301               & 160             & 95             & 135     \\ \hline
+$p_0$ (mbar)                   & 948    & 940    & 941    & 940    & 936    & 939    & 942         & 908.9       & 900.8       & 906.3             & ---             & ---            & ---     \\ \hline
+$T_0$ ($^\circ$C)              & 34.5   & 33.8   & 32.9   & 35.4   & 39.6   & 29.3   & 24.1        & 32.2        & 35.0        & 30.8              & 14.9            & 15.2           & 16.1    \\ \hline
+RH (\%)                        & 5.2    & 7.4    & 4.5    & 14.4   & 11.3   & 22.1   & 22.8        & ---         & 4.0         & 12.0              & 53              & 90             & 77      \\ \hline
+\multicolumn{14}{|c|}{Computed parameters} \\ \hline
+$L$ (m)                        & -9.49  & -111   & 16.2   & -142   & -8.56  & -33.2  & 82.5        & 4.96        & -422        & 69.4              & -14.4           & -75.5          & -81.2   \\ \hline
+$u_*$ (m/s)                    & 0.255  & 0.372  & 0.074  & 0.252  & 0.310  & 0.480  & 0.210       & 0.061       & 0.305       & 0.369             & 0.190           & 0.280          & 0.315   \\ \hline
+$z_0$ (m)                      & 0.0002 & 0.0002 & 0.0002 & 0.0002 & 0.0002 & 0.0002 & 0.0002      & 0.008       & 0.008       & 0.008             & 0.0003$^\ddag$  & 0.0003$^\ddag$ & 0.0003$^\ddag$  \\ \hline
+$\theta_*$ (K)                 & -0.532 & -0.097 & 0.026  & -0.035 & -0.890 & -0.520 & 0.039       & 0.058       & -0.018      & 0.152             & -0.180          & -0.075         & -0.088  \\ \hline
+$\dot{q}''$ (W/m$^2$)          & -154   & -41    & 2      & -10    & -314   & -284   & 9           & 4           & -5          & 58                & -39             & -24            & -32     \\ \hline
+$D$ (m)                        & 25.9   & 27.5   & 29.9   & 32.2   & 27.7   & 31.4   & 30.6        & 19.5$^\dag$ & 16.0$^\dag$ & 10.8$^\dag$       & 13.3            & 12.8           & 14.4    \\ \hline
+\end{tabular}
+\end{center}
+$^\ddag$ The roughness length was changed to 0.00002~m to better match the measured velocity and temperature profiles
+
+$^\dag$ The Falcon experiments involved 4 separated spills
+\label{tab:LNG_Dispersion}
+\end{sidewaystable}
+
 
 
 \section{McCaffrey Plume Experiments}
@@ -653,26 +757,9 @@ The National Bureau of Standards (NBS, which is now called the National Institut
 
 Following is additional information provided by the test director, Richard Peacock of NIST:
 \begin{description}
-\item[Heat Release Rate:] In the two tests for which
-the door was open, the HRR during the steady-burn period measured via oxygen consumption
-calorimetry was 110~kW with an uncertainty of about 15~\%, consistent with the replicate
-measurements made during the experimental series and the uncertainty typical of oxygen
-consumption calorimetry. It was assumed that the closed door test (Test~100O) had the same HRR as the open
-door tests.
-\item[Radiative Fraction:] Natural gas was used as the fuel in
-Test~100A. In Tests~100O and 100Z, acetylene was added to the natural gas to increase the
-smoke yield, and as a consequence, the radiative fraction increased. The radiative fraction of
-natural gas has been studied previously, whereas the radiative fraction of the acetylene/natural
-gas mixture has not been studied. The radiative fraction for the natural gas fire was assigned a
-value of 0.20, whereas a value of 0.30 was assigned for the natural gas/acetylene fires.
-\item[Measurements:] Only two types of measurements conducted during the NBS test series were used in the
-evaluation considered here, because there was less confidence in the other measurements.
-The measurements considered here were the HGL temperature and depth, in which bare bead
-TCs were used to make these measurements. Single point measurements of temperature within
-the burn room were not used in the evaluation of plume or ceiling jet algorithms. This is because
-the geometry was not consistent in either case with the assumptions used in the model algorithms
-of plumes or jets. Specifically, the burner was mounted against a wall, and the room width-to-height
-ratio was less than that assumed by the various ceiling jet correlations.
+\item[Heat Release Rate:] In the two tests for which the door was open, the HRR during the steady-burn period measured via oxygen consumption calorimetry was 110~kW with an uncertainty of about 15~\%, consistent with the replicate measurements made during the experimental series and the uncertainty typical of oxygen consumption calorimetry. It was assumed that the closed door test (Test~100O) had the same HRR as the open door tests.
+\item[Radiative Fraction:] Natural gas was used as the fuel in Test~100A. In Tests~100O and 100Z, acetylene was added to the natural gas to increase the smoke yield, and as a consequence, the radiative fraction increased. The radiative fraction of natural gas has been studied previously, whereas the radiative fraction of the acetylene/natural gas mixture has not been studied. The radiative fraction for the natural gas fire was assigned a value of 0.20, whereas a value of 0.30 was assigned for the natural gas/acetylene fires.
+\item[Measurements:] Only two types of measurements conducted during the NBS test series were used in the evaluation considered here, because there was less confidence in the other measurements. The measurements considered here were the HGL temperature and depth, in which bare bead TCs were used to make these measurements. Single point measurements of temperature within the burn room were not used in the evaluation of plume or ceiling jet algorithms. This is because the geometry was not consistent in either case with the assumptions used in the model algorithms of plumes or jets. Specifically, the burner was mounted against a wall, and the room width-to-height ratio was less than that assumed by the various ceiling jet correlations.
 \end{description}
 
 \begin{figure}[p]
@@ -692,11 +779,6 @@ In 2009, Mell et~al. measured the burning rate of individual Douglas fir trees o
 \label{NIST_Enclosure_Description}
 
 A variety of reduced-scale and full-scale compartment fire experiments have been performed at NIST over the past few decades. The main objective of each series is to measure the concentrations of oxygen, carbon dioxide, carbon monoxide, soot, and unburned hydrocarbons in an under-ventilated compartment. These data sets also provide extreme temperature and heat flux measurements.
-
-
-
-
-
 
 \subsection{NIST Reduced Scale Enclosure Experiments, 1994}
 \label{NIST_RSE_1994_Description}
@@ -794,6 +876,8 @@ In the simulations of all of the NIST enclosure experiments, it is assumed that 
 In the experiments, the heat release rate was measured via oxygen consumption calorimetry. In the simulations, the mass loss rate of fuel was specified by taking the measured HRR and dividing by the heats of combustion listed in Ref.~\cite{SFPE:Tewarson}.
 
 In all simulations, the model geometry included the compartment interior plus a comparable volume at the exterior to allow for a natural flow into and out of the compartment.
+
+Also, in all simulations, the fire suppression algorithm has been turned off ({\ct SUPPRESSION=.FALSE.}). The reason for this is that the suppression algorithm is not able to distinguish viability of a fire that is close to the point of extinction. Research continues in this area.
 
 
 \FloatBarrier
@@ -1244,7 +1328,51 @@ The Fire Laboratory for Accreditation of Models by Experimentation (FLAME) facil
 \section{Sippola Aerosol Deposition Experiments}
 \label{Sippola_Aerosol_Deposition_Description}
 
-Mark Sippola, a doctoral student at the University of California, Berkeley, measured aerosol deposition velocities for various sizes of monodisperse fluorescent particles and various air velocities in a duct \cite{Sippola:2002,Sippola:2010}. For the experiments considered here, the straight steel duct with smooth walls was square with dimensions of 15~cm by 15~cm. The particle diameters were 1~$\mu$m, 3~$\mu$m, 5~$\mu$m, 9~$\mu$m, and 16~$\mu$m. The air velocities in the duct were 2.2~m/s, 5.3~m/s, and 9.0~m/s. A total of twelve panels (20~cm by 10~cm) were cut from the duct section to measure the amount of particles deposited to the duct surfaces; four panels each from the duct ceiling, wall, and floor surfaces. Fluorescent measurement techniques and aerosol concentration measurements were used to calculate the deposition velocities of the particles to duct surfaces (ceiling, wall, and floor) at two straight duct sections where the turbulent flow profile was fully developed.
+Mark Sippola, a doctoral student at the University of California, Berkeley, measured aerosol deposition velocities for various sizes of monodisperse fluorescent particles and various air velocities in a duct \cite{Sippola:2002,Sippola:2010}. For the experiments considered here, the straight steel duct with smooth walls was square with dimensions of 15~cm by 15~cm. The particle diameters were 1~$\mu$m, 3~$\mu$m, 5~$\mu$m, 9~$\mu$m, and 16~$\mu$m. The air velocities in the duct were 2.2~m/s, 5.3~m/s, and 9.0~m/s. A total of twelve panels (20~cm by 10~cm) were cut from the duct section to measure the amount of particles deposited to the duct surfaces; four panels each from the duct ceiling, wall, and floor surfaces. Fluorescent measurement techniques and aerosol concentration measurements were used to calculate the deposition velocities of the particles to duct surfaces (ceiling, wall, and floor) at two straight duct sections where the turbulent flow profile was fully developed. The experiments are summarized in Table~\ref{Sippola_Aerosol_Deposition_Summary}.
+
+\begin{table}[h]
+\caption{Summary of Sippola aerosol deposition experiments selected for model validation.}
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+Test      &  Air Speed        &  Particle Diameter          &  Particle Density             \\
+No.       &  (m/s)            &  ($\mu$m)                   &  (kg/m$^3$)                   \\ \hline \hline
+1         &  2.2              &  1.0                        &  1350                         \\ \hline
+2         &  2.2              &  2.8                        &  1170                         \\ \hline
+3         &  2.1              &  5.2                        &  1210                         \\ \hline
+4         &  2.2              &  9.1                        &  1030                         \\ \hline
+5         &  2.2              &  16                         &  950                          \\ \hline
+6         &  5.3              &  1.0                        &  1350                         \\ \hline
+7         &  5.2              &  1.0                        &  1350                         \\ \hline
+8         &  5.2              &  3.1                        &  1170                         \\ \hline
+9         &  5.4              &  5.2                        &  1210                         \\ \hline
+10        &  5.3              &  9.8                        &  1030                         \\ \hline
+11        &  5.3              &  16                         &  950                          \\ \hline
+12        &  9.0              &  1.0                        &  1350                         \\ \hline
+13        &  9.0              &  3.1                        &  1170                         \\ \hline
+14        &  8.8              &  5.4                        &  1210                         \\ \hline
+15        &  9.2              &  8.7                        &  1030                         \\ \hline
+16        &  9.1              &  15                         &  950                          \\ \hline
+\end{tabular}
+\end{center}
+\label{Sippola_Aerosol_Deposition_Summary}
+\end{table}
+
+\subsubsection{Modeling Notes}
+
+FDS treats smoke particulate and aerosols in a similar way to other gaseous combustion products, basically a tracer gas whose production rate is a fixed fraction of the fuel consumption rate. However, there is an option in the model to allow smoke or aerosols to deposit on solid surfaces, thus reducing its concentration in the product stream. The particle deposition velocity, $u_{\rm dep}$, is calculated by
+\be
+   u_{\rm dep} = \frac{J_1 + J_2 + J_3 + J_4}{4 \; C_{\rm avg}}
+\ee
+where $J_1$ through $J_4$ are the deposition fluxes (\si{kg/(m^2.s)}) for duct panels 1 through 4 given by
+\be
+   J = \frac{m_{\rm d}}{A_{\rm d} \; \Delta t}
+\ee
+where $m_{\rm d}$ is the mass of particles on the duct panel (kg), $A_{\rm d}$ is the area of the duct panel (m$^2$), and $\Delta t$ is the duration over which the aerosol deposits onto the panel (s). $C_{\rm avg}$ is the
+average aerosol concentration in the duct test section (kg/m$^3$) and is given by
+\be
+   C_{\rm avg} = \frac{C_{\rm upstream} + C_{\rm downstream}}{2}
+\ee
 
 \section{Smyth Slot Burner Experiment}
 \label{Smyth_Slot_Burner_Description}
