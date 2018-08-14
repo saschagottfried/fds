@@ -6,6 +6,10 @@ set SMVEDITION=SMV6
 set fdsversion=%FDSEDITION%
 set smvversion=%SMVEDITION%
 
+:: files from Intel version 18 update 2
+set      in_impi=%userprofile%\fire-notes\INSTALL\LIBS\RUNTIME\MPI_INTEL18
+set in_intel_dll=%userprofile%\fire-notes\INSTALL\LIBS\WINDOWS\INTEL18
+
 set SVNROOT=%svn_root%
 set fdsdir=%svn_root%\fds\Build\intel_win_64
 set fdsmpidir=%svn_root%\fds\Build\impi_intel_win_64
@@ -13,17 +17,11 @@ set fdsmpidirdb=%svn_root%\fds\Build\impi_intel_win_64_db
 set basename=%fds_version%-%smv_version%_win64
 
 set in_pdf=%userprofile%\.bundle\pubs
-set in_intel_dll=%userprofile%\fire-notes\INSTALL\LIBS\WINDOWS\INTEL17
 set in_shortcut=%userprofile%\fire-notes\INSTALL\repoexes
 set in_for_bundle=%svn_root%\smv\for_bundle
 
-:: files from mpi version 17 update 1 (doesn't work)
-::set in_impi=%userprofile%\fire-notes\INSTALL\LIBS\RUNTIME\MPI_INTEL17
 
-:: files we got from intel that fixed a problem we reported (does work)
-set in_impi=%userprofile%\fire-notes\INSTALL\LIBS\RUNTIME\WINDOWS_HYDRA2fix
-
-set uploads=%svn_root%\fds\Utilities\uploads
+set uploads=%svn_root%\fds\Build\Bundle\uploads
 set basedir=%uploads%\%basename%
 
 set out_bundle=%basedir%\firemodels
@@ -142,9 +140,9 @@ copy %in_for_bundle%\textures\*.png          %out_textures%\.>Nul
 echo.
 echo --- copying uninstaller ---
 echo.
-CALL :COPY  "%bundleinfo%\uninstall_fds.bat" "%out_uninstall%\uninstall_base.bat"
+CALL :COPY  "%bundleinfo%\uninstall_fds.bat"  "%out_uninstall%\uninstall_base.bat"
 CALL :COPY  "%bundleinfo%\uninstall_fds2.bat" "%out_uninstall%\uninstall_base2.bat"
-CALL :COPY  "%bundleinfo%\uninstall.bat"     "%out_uninstall%\uninstall.bat"
+CALL :COPY  "%bundleinfo%\uninstall.bat"      "%out_uninstall%\uninstall.bat"
 echo @echo off > "%out_uninstall%\uninstall.vbs"
 
 CALL :COPY  "%svn_root%\smv\Build\set_path\intel_win_64\set_path64.exe"      "%out_uninstall%\set_path.exe"
@@ -153,36 +151,27 @@ echo.
 echo --- copying FDS documentation ---
 echo.
 
-CALL :COPY  "%bundleinfo%\FDS_Release_Notes.htm" "%out_guides%\FDS_Release_Notes.htm"
-
-CALL :COPY  %in_pdf%\FDS_Config_Management_Plan.pdf %out_guides%\.
-
-CALL :COPY  %in_pdf%\FDS_User_Guide.pdf %out_guides%\.
-
-CALL :COPY  %in_pdf%\FDS_Technical_Reference_Guide.pdf %out_guides%\.
-
-CALL :COPY  %in_pdf%\FDS_Validation_Guide.pdf %out_guides%\.
-
-CALL :COPY  %in_pdf%\FDS_Verification_Guide.pdf %out_guides%\.
+CALL :COPY  "%svn_root%\webpages\FDS_Release_Notes.htm"  %out_guides%\FDS_Release_Notes.htm
+CALL :COPY  %in_pdf%\FDS_Config_Management_Plan.pdf      %out_guides%\.
+CALL :COPY  %in_pdf%\FDS_User_Guide.pdf                  %out_guides%\.
+CALL :COPY  %in_pdf%\FDS_Technical_Reference_Guide.pdf   %out_guides%\.
+CALL :COPY  %in_pdf%\FDS_Validation_Guide.pdf            %out_guides%\.
+CALL :COPY  %in_pdf%\FDS_Verification_Guide.pdf          %out_guides%\.
 
 echo.
 echo --- copying Smokeview documentation ---
 echo.
 
-CALL :COPY %in_pdf%\SMV_User_Guide.pdf %out_guides%\.
-
+CALL :COPY %in_pdf%\SMV_User_Guide.pdf                %out_guides%\.
 CALL :COPY %in_pdf%\SMV_Technical_Reference_Guide.pdf %out_guides%\.
-
-CALL :COPY %in_pdf%\SMV_Verification_Guide.pdf %out_guides%\.
+CALL :COPY %in_pdf%\SMV_Verification_Guide.pdf        %out_guides%\.
 
 echo.
 echo --- copying startup shortcuts ---
 echo.
  
-CALL :COPY "%svn_root%\webpages\smv_readme.html" "%out_guides%\Smokeview_release_notes.html"
-
+CALL :COPY "%svn_root%\webpages\smv_readme.html"       "%out_guides%\Smokeview_release_notes.html"
 CALL :COPY "%bundleinfo%\Overview.html"                "%out_doc%\Overview.html"
-
 CALL :COPY "%bundleinfo%\FDS_Web_Site.url"             "%out_web%\Official_Web_Site.url"
 
 echo.
