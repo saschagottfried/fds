@@ -1,17 +1,24 @@
 sudo: required
-addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - gfortran-7
-    - gcc-7
 language: generic
-install:
-  - ./install-ompi.sh
-before_script:
-  - export LD_LIBRARY_PATH=/opt/openmpi-3.0.2/lib:$LD_LIBRARY_PATH
-  - export PATH=/opt/openmpi-3.0.2/bin:$PATH
+matrix:
+  include:
+    - os: linux
+      addons:
+        apt:
+          sources:
+          - ubuntu-toolchain-r-test
+          packages:
+          - gfortran-7
+          - gcc-7
+      env:
+        - MATRIX_EVAL="./install-ompi.sh && export LD_LIBRARY_PATH=/opt/openmpi-3.0.2/lib:$LD_LIBRARY_PATH && export PATH=/opt/openmpi-3.0.2/bin:$PATH
+
+    - os: osx
+      env:
+        - MATRIX_EVAL="brew install openmpi gcc && CC=gcc-7 && CXX=g++-7" 
+
+before_install:
+    - eval "${MATRIX_EVAL}"        
 script:
-  - cd Build/mpi_gnu_linux_64
-  - ./make_fds.sh
+    - cd Build/mpi_gnu_linux_64
+    - ./make_fds.sh        
