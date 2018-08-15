@@ -1,5 +1,5 @@
 sudo: required
-language: generic
+language: c
 matrix:
   include:
     - os: linux
@@ -14,12 +14,13 @@ matrix:
         - BUILD_TARGET=mpi_gnu_linux_64
 
     - os: osx
+      osx_image: xcode8
       env:
         - BUILD_TARGET=mpi_gnu_osx_64
 
 install:
   - if [ $TRAVIS_OS_NAME = linux ]; then ./install-ompi.sh && export LD_LIBRARY_PATH=/opt/openmpi-3.0.2/lib:$LD_LIBRARY_PATH && export PATH=/opt/openmpi-3.0.2/bin:$PATH; fi
-  - if [ $TRAVIS_OS_NAME = osx ]; then brew install openmpi; fi
+  - if [ $TRAVIS_OS_NAME = osx ]; then brew install gcc openmpi; fi
 before_script:
   - if [ $TRAVIS_OS_NAME = linux ]; then export LD_LIBRARY_PATH=/opt/openmpi-3.0.2/lib:$LD_LIBRARY_PATH && export PATH=/opt/openmpi-3.0.2/bin:$PATH; fi
 script:
