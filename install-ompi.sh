@@ -1,4 +1,8 @@
 #!/usr/bin/env sh
+
+#Installing projects from source
+#https://docs.travis-ci.com/user/installing-dependencies/
+set -ex
 wget https://download.open-mpi.org/release/open-mpi/v3.0/openmpi-3.0.2.tar.gz -q -O /tmp/openmpi-3.0.2.tar.gz
 cd /tmp
 gunzip -c /tmp/openmpi-3.0.2.tar.gz -q| tar xf -
