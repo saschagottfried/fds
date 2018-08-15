@@ -14,7 +14,7 @@ matrix:
         - BUILD_TARGET=mpi_gnu_linux_64
 
     - os: osx
-      osx_image: xcode8
+      osx_image: xcode9.2
       env:
         - BUILD_TARGET=mpi_gnu_osx_64
 
