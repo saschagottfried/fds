@@ -16,6 +16,7 @@
 # executables
 fds_intel_*
 fds_mpi_intel_*
+fds_mpi_gnu_*
 fds2ascii_*
 smokediff_*
 smokezip_*
