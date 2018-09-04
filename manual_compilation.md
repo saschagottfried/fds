@@ -1,9 +1,26 @@
 # Compiling FDS with GNU Fortran, OpenMPI and Intel Performance Libraries in Ubuntu Linux
 
-This tutorial should help the advanced users who are interested in compiling the FDS source code with all capabilities, using the latest GNU Fortran (7.2) distribution, OpenMPI and linking to Intel Performance libraries. This will provide a locally built FDS with all capabilites found in the bundle.
-
-Inspired by Wiki page on GitHub
-- [Compiling FDS with GNU Fortran, OpenMPI and Intel Performance Libraries in Ubuntu Linux](https://github.com/firemodels/fds/wiki/Compiling-FDS-with-GNU-Fortran,-OpenMPI-and-Intel-Performance-Libraries-in-Ubuntu-Linux)
+This tutorial should help the advanced users who are interested in compiling the FDS source code with all capabilities, using the latest GNU Fortran (7.2) distribution, OpenMPI and linking to Intel Performance libraries. This will provide a locally built FDS with all capabilites found in the bundle. Inspired by Wiki page in FDS GitHub repository.
+- [Compiling FDS with GNU Fortran, OpenMPI and Intel Performance Libraries in Ubuntu Linux](#compiling-fds-with-gnu-fortran-openmpi-and-intel-performance-libraries-in-ubuntu-linux)
+    - [Install basic compiler environment](#install-basic-compiler-environment)
+    - [Install GNU Fortran](#install-gnu-fortran)
+    - [Compile OpenMPI 3.X](#compile-openmpi-3x)
+        - [RUN-TIME SYSTEM SUPPORT](#run-time-system-support)
+        - [Reduce build time](#reduce-build-time)
+        - [Shared libraries dependencies](#shared-libraries-dependencies)
+    - [Compile FDS sources](#compile-fds-sources)
+    - [Run FDS in SMP/OpenMP mode](#run-fds-in-smpopenmp-mode)
+    - [Run FDS in MPI mode](#run-fds-in-mpi-mode)
+    - [Run FDS in MPI/OpenMP hybrid mode](#run-fds-in-mpiopenmp-hybrid-mode)
+    - [Deep Dive - packaging and MPI runtime environment](#deep-dive---packaging-and-mpi-runtime-environment)
+        - [Fortran link options](#fortran-link-options)
+    - [Deploy FDS/MPI to clusters](#deploy-fdsmpi-to-clusters)
+    - [Open MPI treasures](#open-mpi-treasures)
+    - [More on compilers](#more-on-compilers)
+    - [More on Intel MKL](#more-on-intel-mkl)
+    - [More on shared libraries](#more-on-shared-libraries)
+    - [Continuous integration as a service](#continuous-integration-as-a-service)
+    - [Useful tooling](#useful-tooling)
 
 ## Install basic compiler environment
 
@@ -66,7 +83,6 @@ Install GNU Fortran 7
     Setting up gfortran-7 (7.2.0-1ubuntu1~14.04) ...
     Processing triggers for libc-bin (2.19-0ubuntu6.13) ...
 
-
 Verify Fortran installation
 
     $ gfortran-7 --version
@@ -74,7 +90,6 @@ Verify Fortran installation
     Copyright (C) 2017 Free Software Foundation, Inc.
     This is free software; see the source for copying conditions.  There is NO
     warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-
 
 ## Compile OpenMPI 3.X
 
@@ -144,8 +159,7 @@ Explain `./configure` flags
     --noprefix  
       Disable the automatic --prefix behavior 
 
-
-**RUN-TIME SYSTEM SUPPORT**
+### RUN-TIME SYSTEM SUPPORT
 
 Note that in both models, invoking mpirun via an absolute path name is equivalent to specifying the `--prefix` option with a value equivalent to the directory where mpirun resides, minus its last subdirectory. For example:
 
@@ -156,13 +170,9 @@ is equivalent to
 
     % mpirun --prefix /usr/local
 
+### Reduce build time
 
-
-
-
-**Reduce build time**
-
-    $ make -j 4
+    $> make -j 4
 
 Why this works? Explain `make` argument `j`
 
@@ -176,36 +186,12 @@ Open MPI teams comment on parallel builds
 
 >Some versions of make support parallel builds. The example above shows GNU make's "-j" option, which specifies how many compile processes may be executing any any given time. We, the Open MPI Team, have found that doubling or quadrupling the number of processors in a machine can significantly speed up an Open MPI compile (since compiles tend to be much more IO bound than CPU bound).
 
-
-
-    sudo make install
-
-    ...
-
-    Libraries have been installed in:
-       /shared/openmpi_64/lib
-
-    ...
-
-    vagrant@vagrant-ubuntu-trusty-64:/vagrant/Build/mpi_gnu_linux_64$ which mpirun
-    /shared/openmpi_64/bin/mpirun
-
-    vagrant@vagrant-ubuntu-trusty-64:/vagrant/Build/mpi_gnu_linux_64$ mpirun
-    --------------------------------------------------------------------------
-    mpirun could not find anything to do.
-
-    It is possible that you forgot to specify how many processes to run
-    via the "-np" argument.
-    --------------------------------------------------------------------------
-    vagrant@vagrant-ubuntu-trusty-64:/vagrant/Build/mpi_gnu_linux_64$ mpirun --version
-    mpirun (Open MPI) 3.0.0
-
 Links
 
 - [Building Open MPI](https://www.open-mpi.org/faq/?category=building#easy-build)
 - [FAQ - Building Open MPI](https://www.open-mpi.org/faq/?category=building#vpath-parallel-build)
 
-**Required `mpirun` dependencies** 
+### Shared libraries dependencies
 
 output of `ldd` when built with flag `enable_static`:
 
@@ -218,16 +204,15 @@ output of `ldd` when built with flag `enable_static`:
         libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f85cc354000)
         /lib64/ld-linux-x86-64.so.2 (0x00007f85ccf4a000)
 
-
-
 ## Compile FDS sources
+
+> This is recommended by the original compilation documentation
 
 Make these directories available to your environment:
 
     export MPIDIST=/shared/openmpi_64
     export PATH=$MPIDIST/bin:$PATH
     export LD_LIBRARY_PATH=$MPIDIST/lib:$LD_LIBRARY_PATH
-
 
 Go to your updated repo for FDS, you should be able to build the mpi_gnu_linux_64
 
@@ -256,7 +241,6 @@ Go to your updated repo for FDS, you should be able to build the mpi_gnu_linux_6
      Consult FDS Users Guide Chapter, Running FDS, for further instructions.
 
      Hit Enter to Escape...
-
 
 ## Run FDS in MPI mode
 
@@ -305,13 +289,11 @@ Go to your updated repo for FDS, you should be able to build the mpi_gnu_linux_6
 
      Hit Enter to Escape...
 
-
 ## Deep Dive - packaging and MPI runtime environment
 
 In order to ship FDS to end-user environments we explore the required dependencies of a compiled `FDS` executable.
 
 Use `ldd` tool to print shared libraries dependencies.
-
 
     $ ldd fds_mpi_gnu_linux_64 
         linux-vdso.so.1 =>  (0x00007ffc427ec000)
@@ -345,11 +327,10 @@ Given the dependency of `libgfortran.so.4` a potential end user might install ap
     update-alternatives: using /usr/bin/gfortran to provide /usr/bin/f95 (f95) in auto mode
     update-alternatives: using /usr/bin/gfortran to provide /usr/bin/f77 (f77) in auto mode
 
-
 Since default [Runtime library for GNU Fortran applications](https://packages.ubuntu.com/trusty/libgfortran3) on Ubuntu 14.04 is `libgfortran3` an installation of `libgfortran4` is required to run the a self-compiled version of `FDS`.
 
-    $ sudo apt-get install libgfortran4
-	
+    $> sudo apt-get install libgfortran4
+
 ### Fortran link options
 
 Evaluate whether static linking is an option for shipping binaries to CI/CD pipelines.
@@ -361,21 +342,22 @@ Evaluate whether static linking is an option for shipping binaries to CI/CD pipe
 	On systems that provide libgfortran as a shared and a static library, this option forces the use of the static version. If no shared version of libgfortran was built when the compiler was configured, this option has no effect.
 
 Docs
-- [Influence linking step](https://gcc.gnu.org/onlinedocs/gcc-8.1.0/gfortran/Link-Options.html#Link-Options)
-	
+
+- [GNU Fortran compiler - Influence linking step](https://gcc.gnu.org/onlinedocs/gcc-8.1.0/gfortran/Link-Options.html#Link-Options)
+
 ## Deploy FDS/MPI to clusters
 
 A compiled Open MPI installation can be relocated. This information is a game changer.
 
 Relocatable installation
 
-    $ env OPAL_PREFIX=/$HOME/program/mpi/ompi
+    $> env OPAL_PREFIX=/$HOME/program/mpi/ompi
 
 References
+
 - [mpirun - OpenMPI docs](https://www.open-mpi.org/doc/v3.0/man1/mpirun.1.php) 
 - [Mailing lists](http://www.open-mpi.de/community/lists/ompi.php)
 - [How to install Open MPI](http://www.simunano.com/2015/07/how-to-install-openmpi.html)
-
 
 ## Open MPI treasures
 
@@ -388,21 +370,20 @@ References
   - [How can I diagnose problems when running across multiple hosts?](https://www.open-mpi.org/faq/?category=running#diagnose-multi-host-problems)
 
 Blogs and books
+
 - [Open MPI and the MPI-3 MPI_T interface](https://blogs.cisco.com/performance/open-mpi-and-the-mpi-3-mpi_t-interface)
 - [Architecture of Open Source applications - Open MPI](http://www.aosabook.org/en/openmpi.html)
 
 ## More on compilers
 
 AutoTools
+
 - [The magic behind configure, make, make install](https://robots.thoughtbot.com/the-magic-behind-configure-make-make-install)
 
 GNU Fortran 8.X
-- 
+
 - [Install latest gfortran on Ubuntu](https://www.scivision.co/install-latest-gfortran-on-ubuntu/)
 - [Creating shared and static library with GNU compiler](http://renenyffenegger.ch/notes/development/languages/C-C-plus-plus/GCC/create-libraries/index)
-
-GNU Fortran 8.
-
 
 ## More on Intel MKL
 
@@ -417,22 +398,24 @@ GNU Fortran 8.
 ## Continuous integration as a service
 
 Build FDS on Linux
+
 - Travis CI - free for open source projects (linux & MacOSX)
 - AppVeyor - free for open source projects (Windows)
 - Visual Studio Team Services - (Linux, MacOSX, Windows)
 
 Travis CI
 
- - [Install dependencies](https://docs.travis-ci.com/user/installing-dependencies/#Installing-Packages-from-a-custom-APT-repository)
- - [Embed badges](https://docs.travis-ci.com/user/status-images/)
+- [Install dependencies](https://docs.travis-ci.com/user/installing-dependencies/#Installing-Packages-from-a-custom-APT-repository)
+- [Embed badges](https://docs.travis-ci.com/user/status-images/)
 
 ## Useful tooling
 
-Michael Hirsch
 - [Brew for Linux](https://www.scivision.co/install-linuxbrew/)
-- [Install GCC, GFortran, CMake and Make on Windows ](https://www.scivision.co/windows-gcc-gfortran-cmake-make-install/)
+- [Install GCC, GFortran, CMake and Make on Windows](https://www.scivision.co/windows-gcc-gfortran-cmake-make-install/)
 - [Windows Subsystem for Linux](https://www.scivision.co/install-windows-subsystem-for-linux/)
 - [X11 desktop apps for WSL](https://www.scivision.co/x11-gui-windows-subsystem-for-linux/)
 
 Fortran building system
-- https://github.com/szaghi/FoBiS
+
+- [Fortran Building System for poor people](https://github.com/szaghi/FoBiS)
+  - A KISS tool for automatic building modern Fortran projects
