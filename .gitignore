@@ -75,3 +75,5 @@ Validation/*/FDS_Output_Files/*.csv
 
 # Vagrant files
 .vagrant/
+.vs/FDS-VS2015/v15/.suo
+.vs/FDS-VS2015/v14/.suo

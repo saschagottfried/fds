@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VisualStudioUserFile ProjectCreator="Intel Fortran" Keyword="Application" Version="11.0" ProjectIdGuid="{576C0458-E2A0-4359-8D6D-1483E9171A54}">
+	<Configurations>
+		<Configuration Name="Debug|Win32"/>
+		<Configuration Name="Release|Win32"/>
+		<Configuration Name="Debug|x64" Command="$(I_MPI_ROOT)\intel64\bin\mpiexec.exe" CommandArguments="-n 8  $(TargetPath) duct_flow_finer_uscarc.fds" WorkingDirectory="c:\tmp\VTune\uscarc" Environment="OMP_NUM_THREADS=2"/>
+		<Configuration Name="Release|x64" Command="$(I_MPI_ROOT)\intel64\bin\mpiexec.exe" CommandArguments="-n 8  $(TargetPath) duct_flow_finest_uscarc.fds" WorkingDirectory="c:\tmp\VTune\uscarc" Environment="OMP_NUM_THREADS=1"/>
+		<Configuration Name="Release_Advisor|Win32"/>
+		<Configuration Name="Release_Advisor|x64"/></Configurations></VisualStudioUserFile>

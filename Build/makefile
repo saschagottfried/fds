@@ -148,12 +148,12 @@ main.obj: FFLAGS += $(FOPENMPFLAGS)
 
 impi_intel_win_64 : MPILIB = "$(I_MPI_ROOT)\intel64\lib\impi.lib"
 impi_intel_win_64 : MPIINCLUDE = "$(I_MPI_ROOT)\intel64\include"
-impi_intel_win_64 : FFLAGS = /Qipo /O2 /I$(MPIINCLUDE) /traceback /wrap-margin- $(GITINFO) $(INTELMPI_COMPINFO) $(FFLAGSMKL_INTEL)
+impi_intel_win_64 : FFLAGS = /O2 /I$(MPIINCLUDE) /traceback /wrap-margin- $(GITINFO) $(INTELMPI_COMPINFO) /Qmkl:cluster
 impi_intel_win_64 : FOPENMPFLAGS = /Qopenmp
 impi_intel_win_64 : FCOMPL = ifort
 impi_intel_win_64 : obj = fds_impi_win_64
 impi_intel_win_64 : setup_win $(objwin_mpi)
-	$(FCOMPL) -o $(obj) $(FFLAGS) $(FOPENMPFLAGS) /F1000000000 $(objwin_mpi) $(MPILIB) $(LFLAGSMKL_INTEL)
+	mpiifort /Qmkl:cluster -o $(obj) $(FOPENMPFLAGS) /F1000000000 $(objwin_mpi)
 
 impi_intel_win_64_dv : MPILIB = "$(I_MPI_ROOT)\intel64\lib\impi.lib"
 impi_intel_win_64_dv : MPIINCLUDE = "$(I_MPI_ROOT)\intel64\include"
