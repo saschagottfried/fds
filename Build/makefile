@@ -146,7 +146,7 @@ main.obj: FFLAGS += $(FOPENMPFLAGS)
 #*** note: the following scripts (located in ..\Scripts directory) must be run before running make with this target
 #    ..\Scripts\ifortvars intel64
 
-impi_intel_win_64 : MPILIB = "$(I_MPI_ROOT)\intel64\lib\impi.lib"
+impi_intel_win_64 : MPILIB = "$(I_MPI_RELEASE_ROOT)\impi.lib"
 impi_intel_win_64 : MPIINCLUDE = "$(I_MPI_ROOT)\intel64\include"
 impi_intel_win_64 : FFLAGS = /Qipo /O2 /I$(MPIINCLUDE) /traceback /wrap-margin- $(GITINFO) $(INTELMPI_COMPINFO) $(FFLAGSMKL_INTEL)
 impi_intel_win_64 : FOPENMPFLAGS = /Qopenmp
@@ -155,7 +155,7 @@ impi_intel_win_64 : obj = fds_impi_win_64
 impi_intel_win_64 : setup_win $(objwin_mpi)
 	$(FCOMPL) -o $(obj) $(FFLAGS) $(FOPENMPFLAGS) /F1000000000 $(objwin_mpi) $(MPILIB) $(LFLAGSMKL_INTEL)
 
-impi_intel_win_64_dv : MPILIB = "$(I_MPI_ROOT)\intel64\lib\impi.lib"
+impi_intel_win_64_dv : MPILIB = "$(I_MPI_RELEASE_ROOT)\impi.lib"
 impi_intel_win_64_dv : MPIINCLUDE = "$(I_MPI_ROOT)\intel64\include"
 impi_intel_win_64_dv : FFLAGS = /O1 /I$(MPIINCLUDE) /traceback /wrap-margin- $(GITINFO) $(INTELMPI_COMPINFO) $(FFLAGSMKL_INTEL)
 impi_intel_win_64_dv : FOPENMPFLAGS = /Qopenmp
@@ -164,7 +164,7 @@ impi_intel_win_64_dv : obj = fds_impi_win_64_dv
 impi_intel_win_64_dv : setup_win $(objwin_mpi)
 	$(FCOMPL) -o $(obj) $(FFLAGS) $(FOPENMPFLAGS) /F1000000000 $(objwin_mpi) $(MPILIB) $(LFLAGSMKL_INTEL)
 
-impi_intel_win_64_db : MPILIB = "$(I_MPI_ROOT)\intel64\lib\impi.lib"
+impi_intel_win_64_db : MPILIB = "$(I_MPI_DEBUG_ROOT)\impi.lib"
 impi_intel_win_64_db : MPIINCLUDE = "$(I_MPI_ROOT)\intel64\include"
 impi_intel_win_64_db : FFLAGS = /Od /nologo /debug:all /I$(MPIINCLUDE) /Z7 /extend_source:132 /warn:unused /warn:nointerfaces /Qtrapuv /fp:strict /fp:except /traceback /check:all /stand:f08 /wrap-margin- $(GITINFO) $(INTELMPI_COMPINFO) $(FFLAGSMKL_INTEL)
 impi_intel_win_64_db : FOPENMPFLAGS = /Qopenmp
@@ -399,7 +399,7 @@ pres.o : func.o prec.o cons.o type.o mesh.o pois.o velo.o scrc.o geom.o
 part.o : func.o prec.o cons.o type.o mesh.o devc.o data.o geom.o
 vege.o : func.o prec.o cons.o type.o mesh.o devc.o part.o
 read.o : func.o prec.o cons.o type.o mesh.o devc.o ctrl.o irad.o evac.o hvac.o scrc.o data.o geom.o mass.o soot.o
-init.o : func.o prec.o cons.o type.o mesh.o devc.o irad.o pois.o data.o evac.o pres.o
+init.o : func.o prec.o cons.o type.o mesh.o devc.o irad.o pois.o data.o evac.o pres.o geom.o
 dump.o : func.o prec.o cons.o type.o mesh.o devc.o evac.o smvv.o turb.o scrc.o data.o radi.o soot.o geom.o
 main.o : func.o prec.o cons.o type.o mesh.o devc.o smvv.o mass.o divg.o velo.o wall.o fire.o irad.o ieva.o radi.o evac.o part.o vege.o dump.o read.o init.o pres.o pois.o ctrl.o turb.o hvac.o scrc.o data.o geom.o soot.o
 
@@ -432,7 +432,7 @@ pres.obj : func.obj prec.obj cons.obj type.obj mesh.obj pois.obj velo.obj scrc.o
 part.obj : func.obj prec.obj cons.obj type.obj mesh.obj devc.obj data.obj geom.obj
 vege.obj : func.obj prec.obj cons.obj type.obj mesh.obj devc.obj part.obj
 read.obj : func.obj prec.obj cons.obj type.obj mesh.obj devc.obj ctrl.obj irad.obj evac.obj hvac.obj scrc.obj data.obj geom.obj mass.obj soot.obj
-init.obj : func.obj prec.obj cons.obj type.obj mesh.obj devc.obj irad.obj pois.obj data.obj evac.obj pres.obj
+init.obj : func.obj prec.obj cons.obj type.obj mesh.obj devc.obj irad.obj pois.obj data.obj evac.obj pres.obj geom.obj
 dump.obj : func.obj prec.obj cons.obj type.obj mesh.obj devc.obj evac.obj smvv.obj turb.obj scrc.obj data.obj radi.obj soot.obj geom.obj
 main.obj : func.obj prec.obj cons.obj type.obj mesh.obj devc.obj smvv.obj mass.obj divg.obj velo.obj wall.obj fire.obj irad.obj ieva.obj radi.obj evac.obj part.obj vege.obj dump.obj read.obj init.obj pres.obj pois.obj ctrl.obj turb.obj hvac.obj scrc.obj data.obj geom.obj soot.obj
 

@@ -111,7 +111,7 @@ $QFDS -d Controls rms_cov_corr.fds
 $QFDS -d Controls rms_example.fds
 
 $QFDS -d Detectors aspiration_detector.fds
-$QFDS -d Detectors beam_detector.fds
+$QFDS -p 8 -d Detectors beam_detector.fds
 $QFDS -d Detectors objects_dynamic.fds
 $QFDS -d Detectors objects_static.fds
 $QFDS -d Detectors smoke_detector.fds
@@ -133,6 +133,8 @@ $QFDS -d Fires box_burn_away1.fds
 $QFDS -d Fires box_burn_away2.fds
 $QFDS -d Fires box_burn_away3.fds
 $QFDS -d Fires box_burn_away4.fds
+$QFDS -d Fires box_burn_away5.fds
+$QFDS -d Fires box_burn_away6.fds
 $QFDS -d Fires box_burn_away_2D.fds
 $QFDS -d Fires box_burn_away_2D_residue.fds
 $QFDS -d Fires box_burn_away1_pyro3d_vs_pyro1d.fds
@@ -235,6 +237,12 @@ $QFDS -d Heat_Transfer ht3d_sphere_51.fds
 $QFDS -p 8 -d Heat_Transfer ht3d_sphere_102.fds
 $QFDS -d Heat_Transfer ht3d_vs_ht1d.fds
 $QFDS -p 4 -d Heat_Transfer back_wall_test.fds
+$QFDS -d Heat_Transfer ht3d_radiation_kappa100_n10.fds
+$QFDS -d Heat_Transfer ht3d_radiation_kappa100_n20.fds
+$QFDS -d Heat_Transfer ht3d_radiation_kappa100_n40.fds
+$QFDS -d Heat_Transfer ht3d_radiation_kappa2000_n10.fds
+$QFDS -d Heat_Transfer ht3d_radiation_kappa2000_n20.fds
+$QFDS -d Heat_Transfer ht3d_radiation_kappa2000_n40.fds
 
 $QFDS -d HVAC ashrae7_fixed_flow.fds
 $QFDS -d HVAC ashrae7_quadratic.fds
@@ -269,6 +277,8 @@ $QFDS -d HVAC leak_test_2.fds
 $QFDS -d HVAC leak_test.fds
 $QFDS -d HVAC HVAC_leak_exponent.fds
 
+$QFDS -d Miscellaneous layer_1mesh.fds
+$QFDS -p 3 -d Miscellaneous layer_4mesh.fds
 $QFDS -d Miscellaneous pyramid.fds
 $QFDS -d Miscellaneous mesh_transformation.fds
 $QFDS -d Miscellaneous obst_sphere.fds
@@ -300,6 +310,7 @@ $QFDS -d Pressure_Effects pressure_rise.fds
 $QFDS -d Pressure_Effects zone_break_fast.fds
 $QFDS -d Pressure_Effects zone_break_slow.fds
 $QFDS -p 2 -d Pressure_Effects zone_shape.fds
+$QFDS -p 8 -d Pressure_Effects zone_shape_2.fds
 
 $QFDS -d Pressure_Solver dancing_eddies_1mesh.fds
 $QFDS -p 4 -d Pressure_Solver dancing_eddies_uglmat.fds
@@ -405,6 +416,9 @@ $QFDS -d Radiation plate_view_factor_cart_100.fds
 $QFDS -d Radiation plate_view_factor_cyl_30.fds
 $QFDS -d Radiation plate_view_factor_cyl_60.fds
 $QFDS -d Radiation plate_view_factor_cyl_100.fds
+$QFDS -d Radiation plate_view_factor_ibm_30.fds
+$QFDS -d Radiation plate_view_factor_ibm_60.fds
+$QFDS -d Radiation plate_view_factor_ibm_100.fds
 $QFDS -d Radiation radiating_polygon_square_20.fds
 $QFDS -d Radiation radiating_polygon_square_40.fds
 $QFDS -d Radiation radiating_polygon_square_80.fds
